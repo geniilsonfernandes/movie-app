@@ -1,0 +1,97 @@
+<!doctype html>
+<!-- doctype informa ao agente de usuario a versão do html que deve ser renderizada-->
+<html lang="pt-br">
+
+<head>
+	<title> movie app </title>
+	<meta charset="utf-8">
+	<meta name="author" content="">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<header class="cover__background">
+		<div class="cover__movie mwfix">
+			<div class="cover__left">
+				<div class="cover__title">
+					<h1>
+						Aplicação de estudo
+					</h1>
+				</div>
+				<div class="cover__form">
+					<form action="" id="formulario" class="form__style">
+						<input type="text" class="input__style" value="home" id="termoDaBusca" placeholder="Procurar filme">
+						<button class="btn__style">
+							<h3>Procurar</h3>
+						</button>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</header>
+
+	<main class="movie__output__section">
+
+		<div class="movie_section_title mwfix">
+
+		</div>
+
+
+		<div class="movie__output mwfix">
+
+		</div>
+		<section class="modal__background">
+			<div class="modal">
+				<div class="modal__movie">
+					<div class="modal__header">
+						<div class="modal__header__content">
+							<div class="modal__movie__Subtitle">
+								<img src="svg/brazil.png" alt="">
+								<h3>Lançado em 2014</h3>
+							</div>
+							<div class="modal__movie__title">
+								<h2>X-men - Dias de Um Futuro Esquecido</h2>
+							</div>
+							<div class="modal__movie__overview">
+								<p>
+									Eles são filhos do átomo superior, o próximo elo na
+									corrente da evolução. Cada um nasceu com uma mutação
+									genética rara, que na puberdade se manifestou em poderes extraordinários.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="modal__suggestion">
+						<div class="suggestion__title">
+							<h3>Você pode gosta também:</h3>
+							<img src="svg/fire.svg" alt="">
+						</div>
+						<div class="suggestion__content">
+							<div class="suggestion__content__skeleton"> </div>
+							<div class="suggestion__content__skeleton"> </div>
+							<div class="suggestion__content__skeleton"> </div>
+							<div class="suggestion__content__skeleton"> </div>
+							<div class="suggestion__content__skeleton"> </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal__btn--closer" onclick="modalCreate.closerModal()"></div>
+			</div>
+		</section>
+
+	</main>
+
+
+
+
+
+
+	<script src="js/main.js"></script>
+</body>
+
+</html>
