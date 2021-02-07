@@ -638,12 +638,14 @@ transition: all cubic-bezier(.66, .04, .17, .99) 200ms;
 }
 
 .modal__suggestion {
+	
 	margin-top: 40px;
 }
 
 .suggestion__title {
 	display: flex;
-	width: 250px;
+	justify-content: space-between;
+	width: 60%;
 	justify-content: space-between;
 	margin: 0 0 0 40px;
 }
@@ -679,6 +681,10 @@ transition: all cubic-bezier(.66, .04, .17, .99) 200ms;
 
 	.suggestion__content {
 		justify-content: center;
+	}
+	
+	.loading {
+		flex: 0 0 60%;
 	}
 }
 

@@ -20,7 +20,7 @@ function moviesTransform(movies) {
 			date: movie.release_date.substring(0, 4),
 			vote: movie.vote_average,
 			back: `https://image.tmdb.org/t/p/w533_and_h300_bestv2${movie.backdrop_path}`,
-			overview: movie.overview.substring(0, 250)
+			overview: movie.overview.substring(0, 160)
 		};
 	});
 
@@ -139,7 +139,7 @@ const htmlFromPage = {
 
 };
 
-
+DOMfunctions.setSkeleton()
 // buscando na api
 async function searchMovie(value) {
 	DOMfunctions.setSkeleton();
