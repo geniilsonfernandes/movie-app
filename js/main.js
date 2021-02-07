@@ -139,7 +139,7 @@ const htmlFromPage = {
 
 };
 
-DOMfunctions.setSkeleton()
+
 // buscando na api
 async function searchMovie(value) {
 	DOMfunctions.setSkeleton();
