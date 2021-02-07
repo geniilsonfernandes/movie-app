@@ -15,6 +15,7 @@ function moviesTransform(movies) {
 	// cria novo array transfomando os resutados
 	movieItems = movies.map(movie => {
 		return {
+			id: movie.id,
 			poster: (movie.poster_path === null) ? `img/error_img.png` : `https://image.tmdb.org/t/p/w300${movie.poster_path}`,
 			title: movie.title,
 			date: movie.release_date.substring(0, 4),
@@ -46,7 +47,7 @@ function moviesTransform(movies) {
 								<h3>${key.vote}</h3>
 							</div>
 						</div>
-						<button class="btn_style__um" onclick="modalCreate.movieDate('${key.title}','${key.date}','${key.back}','${key.overview}')">
+						<button class="btn_style__um" onclick="fetchModal('${key.id}')">
 							<p>ver mais <a>
 						</button>
 					</div>
@@ -65,17 +66,14 @@ function moviesTransform(movies) {
 
 // -- // 
 
+
+// fetchModal
+async function fetchModal(value) {
+	const response = await fetch(`https://api.themoviedb.org/3/movie/${value}?${apikey}&language=pt-BR`);
+	const dados = await response.json()
+	modalCreate.modalinsertDate(dados)
+};
 const modalCreate = {
-	movieDate(title, date, bg, overview) {
-		 movieDate = {
-			title: title,
-			date: date,
-			overview: overview,
-			back: bg,
-		};
-		
-		modalCreate.modalinsertDate(movieDate)
-	},
 	modalinsertDate(movie) {
 		const release = document.querySelector('.modal__movie__Subtitle h3');
 		const title = document.querySelector('.modal__movie__title h2');
@@ -84,10 +82,10 @@ const modalCreate = {
 		
 		
 		
-		release.innerHTML = `Lançado em ${movie.date}`;
+		release.innerHTML = `Lançado em ${movie.release_date.substring(0, 4)}`;
 		title.innerHTML = movie.title;
 		overview.innerHTML = movie.overview;
-		background.style.backgroundImage ='url('+ movie.back +')';
+		background.style.backgroundImage ='url(https://image.tmdb.org/t/p/w533_and_h300_bestv2'+ movie.backdrop_path +')';
 		
 		modalCreate.modalOpen();
 	},
@@ -100,7 +98,6 @@ const modalCreate = {
 		const closerBtn = document.querySelector('.modal__btn--closer');
 		modal.classList.remove('modal__active');
 	}
-
 }
 
 

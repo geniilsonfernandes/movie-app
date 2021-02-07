@@ -318,7 +318,6 @@ body {
 .data {
 	display: flex;
 	align-items: center;
-	margin-right: 20px;
 }
 
 .data p {
@@ -335,7 +334,7 @@ body {
 }
 
 .note {
-	margin-left: 20px;
+	margin-left: 10px;
 }
 
 .note h3 {
