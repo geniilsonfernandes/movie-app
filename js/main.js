@@ -80,8 +80,6 @@ const modalCreate = {
 		const overview = document.querySelector('.modal__movie__overview p');
 		const background = document.querySelector('.modal__header')
 		
-		
-		
 		release.innerHTML = `Lançado em ${movie.release_date.substring(0, 4)}`;
 		title.innerHTML = movie.title;
 		overview.innerHTML = movie.overview;
