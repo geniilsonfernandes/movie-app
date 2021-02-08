@@ -48,7 +48,7 @@ function moviesTransform(movies) {
 							</div>
 						</div>
 						<button class="btn_style__um" onclick="fetchModal('${key.id}')">
-							<p>ver mais <a>
+							<p>ver mais </p>
 						</button>
 					</div>
 				</div>

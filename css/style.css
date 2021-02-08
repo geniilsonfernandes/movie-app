@@ -318,6 +318,7 @@ body {
 .data {
 	display: flex;
 	align-items: center;
+	margin-right: 20px;
 }
 
 .data p {
@@ -334,7 +335,7 @@ body {
 }
 
 .note {
-	margin-left: 10px;
+	margin-left: 20px;
 }
 
 .note h3 {
@@ -420,8 +421,11 @@ body {
 	}
 
 	.movie__block {
-		flex: 0 0 60%;
+		flex: 0 0 75%;
 		margin-bottom: 50px;
+	}
+	.movie__info{
+		justify-content: space-between;
 	}
 }
 
