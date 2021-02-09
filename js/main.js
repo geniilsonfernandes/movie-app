@@ -62,10 +62,6 @@ function moviesTransform(movies) {
     const moviesDate = document.querySelectorAll('.movie__info');
 };
 
-
-
-
-
 // Modal
 
 let movieList; //VARIAVEL COM o array 
