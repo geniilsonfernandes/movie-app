@@ -83,17 +83,14 @@ const modalCreate = {
         modalCreate.modalOpen();
     },
     modalOpen() {
-		console.log(window.scrollY);
 		scrollpage = window.scrollY;
         //dom elementos
 		const modalBackground = document.querySelector('.modal__background');
 		const main__container = document.querySelector('.main__container');
         const modal = document.querySelector('.modal');
-        
-		
+
 		main__container.style.position = `fixed`;
         main__container.style.top = `-${scrollpage}px`;
-		console.log(scrollpage);
 		modalBackground.classList.add('modal__bg--on');
         modal.classList.add('modal__active');
 		window.scrollTo(0,0)
@@ -117,7 +114,8 @@ const modalCreate = {
 		const heightP = document.querySelector('.modal__movie__overview P').clientHeight;
 		const text = document.querySelector('.modal__movie__overview');
 		const showmore = document.querySelector('.modal__showmore p');
-		console.log(showmore,text.clientHeight)
+            
+
 			if(text.clientHeight==100 && heightP>100 ){
 				text.style.height = `${heightP}px`;
 				showmore.innerHTML = 'Fechar'
@@ -125,11 +123,16 @@ const modalCreate = {
 				text.style.height = `100px`;
 				showmore.innerHTML = 'Ler mais'
 			}
-	}
+	},
+    escapeCloser(event){
+        if(event.keyCode===27){
+            modalCreate.closerModal()
+        }
+    }
 }
 //ler mais
 
-
+window.addEventListener('keydown', modalCreate.escapeCloser )
 
 
 // DOM functions //
