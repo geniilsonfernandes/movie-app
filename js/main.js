@@ -105,6 +105,7 @@ const modalCreate = {
         const modal = document.querySelector('.modal');
 		const main__container = document.querySelector('.main__container');
         const closerBtn = document.querySelector('.modal__btn--closer');
+		const text = document.querySelector('.modal__movie__overview').style.height = `100px`;
 		
 		main__container.style.top = `0px`;
         main__container.style.position = `static`;
