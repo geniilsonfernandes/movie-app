@@ -462,14 +462,14 @@ body {
 .modal {
 	position: relative;
 	margin: 0 auto;
-	width: 80%;
+	width: 65%;
 	background: rgb(21, 20, 36);
 	border-radius: 25px;
 	overflow: hidden;
 	visibility: hidden;
 	opacity: 0;
 
-	transition: all linear 300ms;
+	
 
 }
 
@@ -480,14 +480,14 @@ body {
 	animation-duration: 300ms;
 	visibility: visible;
 	opacity: 1;
+	transition: all linear 300ms;
 }
 
 
 
-
-@keyframes Modalinto {
+@keyframes Modalinto{
 	from {
-		transform: translateY(-30px);
+		transform: translateY(-20px);
 		opacity: 0;
 	}
 
@@ -520,7 +520,7 @@ body {
 	left: 0;
 
 	background: rgb(239, 239, 239);
-	background: linear-gradient(180deg, rgba(21, 20, 36, 0.427608543417367) 26%, rgba(21, 20, 36, 1) 100%);
+	background: linear-gradient(180deg, rgba(21, 20, 36, 0.79) 10%, rgba(21, 20, 36, 0.87) 45%, rgb(21, 20, 36) 100%);
 	width: 100%;
 	height: 100%;
 	z-index: 1;
@@ -576,7 +576,7 @@ body {
 	overflow: hidden;
 	line-height: 27px;
 	text-align: left;
-	color: #a0a0a8;
+	color: #ffffff;
 }
 
 
@@ -711,16 +711,44 @@ body {
 
 @media screen and (max-width: 746px) {
 	.modal__header__content {
-		width: 80%;
+		width: 90%;
+		margin: 0 20px;
 	}
 
 	.suggestion__content {
 		justify-content: center;
 	}
-
-	.loading {
-		flex: 0 0 60%;
+	
+	.modal__showmore{
+		margin: 20px auto;
 	}
+	.loading {
+		flex: 0 0 75%;
+	}
+	.modal{
+	width: 95%;
+	}
+	.modal__active {
+	animation-name: ModalintoMobile;
+	animation-duration: 300ms;
+	visibility: visible;
+	opacity: 1;
+	transition: all linear 300ms;
+}
+
+
+
+@keyframes ModalintoMobile{
+	from {
+		transform: translateY(100vh);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+}
 }
 
 

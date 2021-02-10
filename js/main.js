@@ -6,14 +6,6 @@ const output = document.querySelector('.movie__output')
 // api //
 const apikey = 'api_key=c8ef0b0b4be9eea2fd38600b56a29bb6'
 
-
-
-
-
-
-
-
-
 // Transform 
 function moviesTransform(movies) {
     // ORGIZANDO E CORRGINDO DADOS 
@@ -63,11 +55,10 @@ function moviesTransform(movies) {
 };
 
 // Modal
-
 let movieList; //VARIAVEL COM o array 
-
-// objeto com as funcoes do modal
+//
 let scrollpage = 0;
+//
 const modalCreate = {
     modalSearch(value){
         modalCreate.modalinsertDate(movieList[value])
@@ -84,39 +75,37 @@ const modalCreate = {
     },
     modalOpen() {
 		scrollpage = window.scrollY;
-        //dom elementos
-		const modalBackground = document.querySelector('.modal__background');
+        //
+		const modalBackground = document.querySelector('.modal__background').classList.add('modal__bg--on');
 		const main__container = document.querySelector('.main__container');
-        const modal = document.querySelector('.modal');
-
+        const modal = document.querySelector('.modal').classList.add('modal__active')
+		//
 		main__container.style.position = `fixed`;
         main__container.style.top = `-${scrollpage}px`;
-		modalBackground.classList.add('modal__bg--on');
-        modal.classList.add('modal__active');
+       	//
 		window.scrollTo(0,0)
     },
     closerModal() {
         //FECHA MODAL
 		//dom elementos
-		const modalBackground = document.querySelector('.modal__background');
-        const modal = document.querySelector('.modal');
+		document.querySelector('.modal__showmore p').innerHTML = 'Ler mais'
+		document.querySelector('.modal__movie__overview').style.height = `100px`;
+		//
+		const modalBackground = document.querySelector('.modal__background').classList.remove('modal__bg--on');
+        const modal = document.querySelector('.modal').classList.remove('modal__active');
 		const main__container = document.querySelector('.main__container');
         const closerBtn = document.querySelector('.modal__btn--closer');
-		const text = document.querySelector('.modal__movie__overview').style.height = `100px`;
-		
+		//
 		main__container.style.top = `0px`;
         main__container.style.position = `static`;
-		modalBackground.classList.remove('modal__bg--on');
-        modal.classList.remove('modal__active');
+		//
 		window.scrollTo(0,scrollpage)
     },
 	showMore(){
 		const heightP = document.querySelector('.modal__movie__overview P').clientHeight;
 		const text = document.querySelector('.modal__movie__overview');
 		const showmore = document.querySelector('.modal__showmore p');
-            
-
-			if(text.clientHeight==100 && heightP>100 ){
+            if(text.clientHeight==100 && heightP>100 ){
 				text.style.height = `${heightP}px`;
 				showmore.innerHTML = 'Fechar'
 			}else{
@@ -133,7 +122,7 @@ const modalCreate = {
 //ler mais
 
 window.addEventListener('keydown', modalCreate.escapeCloser )
-
+//
 
 // DOM functions //
 const DOMfunctions = {
@@ -161,32 +150,30 @@ const htmlFromPage = {
 
 };
 
-
-
-
-
-
-
-
-
 // captura de Evento do formulario
 formulario.addEventListener('submit', event => {
     event.preventDefault();
-    term = termo.value.trim();
-    (!term) ? output.innerHTML = htmlFromPage.invalidValue : searchMovie(term);
+    //
+	term = termo.value.trim();
+   	//
+	(!term) ? output.innerHTML = htmlFromPage.invalidValue : searchMovie(term);
 });
 
 // buscando na api
 async function searchMovie(value) {
     DOMfunctions.setSkeleton();
-    const response = await fetch(`https://api.themoviedb.org/3/search/movie?${apikey}&language=pt-BR&query=${value}&page=1&include_adult=false`);
+    //
+    const response1 = await fetch(`https://api.themoviedb.org/3/movie/284053?api_key=c8ef0b0b4be9eea2fd38600b56a29bb6&language=pt-BR`);
+    const dados1 = await response1.json()
+	const response = await fetch(`https://api.themoviedb.org/3/search/movie?${apikey}&language=pt-BR&query=${value}&page=1&include_adult=false`);
     const dados = await response.json()
-    if (dados.total_results === 0) {
+    console.log(dados1)
+    //
+	if (dados.total_results === 0) {
         output.innerHTML = htmlFromPage.returnInvalid(value)
     } else {
         moviesTransform(dados.results);
     };
-  
 };
 
 
