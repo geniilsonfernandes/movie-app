@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ajuste*/
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+HTML {
+	height: 100%;
+}
+
+body {
+	background: rgb(21, 20, 36);
+	height: 100%;
+	font-family: 'Poppins', sans-serif;
+
+}
+
+.pd_fix {
+	padding: 0 3% 0 3%;
+}
+
+.mwfix {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+@media screen and (max-width: 1440px) {
+	.mwfix {
+		max-width: 1088px;
+		margin: 0 auto;
+	}
+}
+
+@media screen and (max-width: 1088px) {
+	.mwfix {
+		
+		max-width: 746px;
+		margin: 0 auto;
+	}
+}
+
+@media screen and (max-width: 746px) {
+	.mwfix {
+		max-width: 610px;
+		margin: 0 auto;
+	}
+}
+
+/* ajuste */
+
+
+
+.movie__backgrund{
+	background: rgb(21, 20, 36);
+	background: linear-gradient(180deg, rgba(21, 20, 36, 0.427608543417367) 26%, rgba(21, 20, 36, 1) 100%);
+	width: 100%;
+	height: 60%;
+	position: relative;
+}
+.movie__backgrund::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-image: url('../../img/godzilla-vs-kong-2.jpg');
+	background-position: center;
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
+
+
+.movie__content{
+	padding-top: 300px;
+	display: flex;
+	position: relative;
+}
+
+.movie__content__left{
+	flex:0 0 50%;
+}
+
+.movie__content__right{
+	flex:0 0 50%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+/*content*/
+.content__Subtitle {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-right: 20px;
+	width: 130px;
+}
+
+.content__Subtitle h3 {
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 32px;
+	text-align: left;
+	color: #bcbcbc;
+}
+
+.content__title {
+	max-width: 60%;
+	margin-bottom: 15px;
+}
+
+.content__title h2 {
+	font-weight: 600;
+	font-size: 25px;
+	text-align: left;
+	color: #fff;
+}
+
+.content__overview{
+	max-width: 80%;
+	height: 100px;
+	overflow: hidden;
+	transition: all cubic-bezier(.66, .04, .17, .99) 400ms;
+}
+
+.content__overview p {
+	position: relative;
+	font-weight: normal;
+	font-size: 13px;
+	overflow: hidden;
+	line-height: 27px;
+	text-align: left;
+	color: #ffffff;
+}
+.movie__showmore {
+	margin-top: 30px; 
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 222px;
+	height: 38px;
+	border-radius: 2px;
+	background: transparent;
+	border: 1px solid rgba(255, 255, 255, 0.13);
+	background-color: rgba(255, 255, 255, 0.08);
+	transition: all cubic-bezier(.66, .04, .17, .99) 400ms;
+}
+.movie__showmore:hover{
+	background-color: rgba(255, 255, 255, 0.33);
+}
+.movie__showmore p {
+	font-weight: 300;
+	font-size: 12px;
+	letter-spacing: 0.17em;
+	text-align: center;
+	color: #fff;
+}
+/* -- info -- */
+.content__info{
+	display: flex;
+	flex-flow: column;
+}
+.content__info__genero,
+.content__info__titleoriginal,
+.content__info__produtor{
+	display: flex;
+	width: 350px;
+	margin-bottom: 15px;
+}
+
+
+.content__info__genero h3,
+.content__info__titleoriginal h3,
+.content__info__produtor h3{
+	font-weight: 400;
+	font-size: 14px;
+	color: #fff;
+}
+.content__info__genero p,
+.content__info__titleoriginal p,
+.content__info__produtor p{
+	margin-left: auto;
+	font-weight: 400;
+	width: 70%;
+	font-size: 14px;
+	color: #a0a0a8;
+}
+.movie__btn--back{
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 30px 0;
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	background: white;
+	z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.movie__btn--back img {
+	width: 23%;
+	transform: translateX(-2px)
+}
+
+/* mobile*/
+
+@media screen and (max-width: 746px){
+	.movie__content{
+	padding-top: 300px;
+	display: flex;
+	flex-flow: wrap;
+	justify-content: center;
+}
+
+.movie__content__left{
+	flex:0 0 90%;
+}
+
+.movie__content__right{
+	flex:0 0 90%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+	.content__title{
+		max-width: 100%;
+	}
+	.content__overview {
+		max-width: 100%;
+	}
+	.content__info{
+	width: 100%;
+	display: flex;
+	flex-flow: column;
+}
+	.movie__showmore{
+		margin: 40px auto 40px;
+	}
+.content__info__genero,
+.content__info__titleoriginal,
+.content__info__produtor{
+	display: flex;
+	width: 100%;
+	margin-bottom: 15px;
+}
+.content__info__genero p,
+.content__info__titleoriginal p,
+.content__info__produtor p{
+	margin-left: auto;
+	font-weight: 400;
+	width: 70%;
+	font-size: 14px;
+	color: #a0a0a8;
+}
+}
+
+
+
