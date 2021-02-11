@@ -12,99 +12,133 @@
 </head>
 
 <body>
-	
-	
 <main>
-	<section class="movie__backgrund">
-		
-		<div class="movie__content mwfix">
-		<div class="movie__btn--back"><img src="/svg/back.svg" alt="back"></div>
-			<div class="movie__content__left">
+		<section class="movie__backgrund">
+			<div class="movie__content mwfix">
+				<div class="movie__btn--back"><img src="../svg/back.svg" alt="back"></div>
+				<div class="movie__content__left">
 					<div class="content__Subtitle">
-							<img src="/svg/brazil.png" alt="">
-							<h3>
-								lançado em 2014
-							</h3>
+						<img src="../svg/brazil.png" alt="">
+						<h3>
+							lançado em <span>2014</span>		
+						</h3>
 					</div>
 					<div class="content__title">
-							<h2>X-men - Dias de Um Futuro Esquecido</h2>
+						<h2></h2>
 					</div>
-
 					<div class="content__overview">
-							<p>Eles são filhos do átomo superior, o próximo elo na corrente da evolução. Cada um nasceu com uma mutação genética rara, que na puberdade se manifestou em poderes extraordinários.</p>
+						<p></p>
 					</div>
-					<div class="movie__showmore" >
-							<p>Ler mais</p>
+					<div class="movie__showmore" onclick="DOMcontrusct.showMore()">
+						<p>Ler mais</p>
 					</div>
-			</div>
-			<div class="movie__content__right">
+				</div>
+				<div class="movie__content__right">
 					<div class="content__info">
 						<div class="content__info__genero">
 							<h3>Gêneros:</h3>
-							<p>Ação, Aventura, comédia,
-							Fantasia, Ficção científica 
-							</p>
+							<p></p>
 						</div>
 						<div class="content__info__titleoriginal">
 							<h3>Titulo original:</h3>
-							<p>Thor</p>
+							<p></p>
 						</div>
 						<div class="content__info__produtor">
 							<h3>Produtora:</h3>
-							<p>Marvel Studios</p>
+							<p></p>
 						</div>
 					</div>
+				</div>
 			</div>
-		</div>
-	</section>
-	
-	
+		</section>
 </main>
+<script>
 
-	
-	
-<!--
-	
-		<section class="modal__background">
-		<div class="modal">
-			<div class="modal__movie">
-				<div class="modal__header">
-					<div class="modal__header__content">
-						<div class="modal__movie__Subtitle">
-							<img src="svg/brazil.png" alt="">
-							<h3></h3>
-						</div>
-						<div class="modal__movie__title">
-							<h2>X-men - Dias de Um Futuro Esquecido</h2>
-						</div>
-						<div class="modal__movie__overview">
-							<p>Eles são filhos do átomo superior, o próximo elo na corrente da evolução. Cada um nasceu com uma mutação genética rara, que na puberdade se manifestou em poderes extraordinários.</p>
-						</div>
-						<div class="modal__showmore" onclick="modalCreate.showMore()">
-							<p>Ler mais</p>
-						</div>
-					</div>
-				</div>
-				<div class="modal__suggestion">
-					<div class="suggestion__title">
-						<h3>Você pode gosta também:</h3>
-						<img src="./svg/fire.svg" alt="">
-					</div>
-					<div class="suggestion__content">
-						<div class="suggestion__content__skeleton"> </div>
-						<div class="suggestion__content__skeleton"> </div>
-						<div class="suggestion__content__skeleton"> </div>
-						<div class="suggestion__content__skeleton"> </div>
-						<div class="suggestion__content__skeleton"> </div>
-					</div>
-				</div>
-			</div>
-			<div class="modal__btn--closer" onclick="modalCreate.closerModal()"></div>
-		</div>
-	</section>
--->
-	
-<!--	<script src="js/main.js"></script>-->
+// left content  
+const btnBack = document.querySelector('.movie__btn--back') 
+const movieBackgrund = document.querySelector('.movie__backgrund');
+const contentSubtitle = document.querySelector('.content__Subtitle h3 span');
+const contentTitle = document.querySelector('.content__title h2');
+const contentOverview = document.querySelector('.content__overview p');
+// right content 
+const genero = document.querySelector('.content__info__genero p');
+const titleoriginal = document.querySelector('.content__info__titleoriginal p');
+const produtor = document.querySelector('.content__info__produtor p');
+
+// page events
+btnBack.addEventListener('click',()=>{
+	window.history.back();
+})
+
+window.addEventListener('load', async () => {
+	DOMcontrusct.loading();
+	const filmeID = window.location.href.split('=');
+	//
+	const response1 = await fetch(`https://api.themoviedb.org/3/movie/${filmeID[1]}?api_key=c8ef0b0b4be9eea2fd38600b56a29bb6&language=pt-BR`);
+  const movie = await response1.json();
+	console.log(movie);
+	// ORGIZANDO E CORRGINDO DADOS 
+	movieItems = {
+            id: movie.id,
+            poster: (movie.poster_path === null) ? `img/error_img.png` : `https://image.tmdb.org/t/p/w300${movie.poster_path}`,
+            title: movie.title,
+            date: (movie.release_date===undefined)? `Sem data`: movie.release_date.substring(0, 4),
+            vote: movie.vote_average,
+            back:  (movie.backdrop_path===null)? `img/error_img.png` :`https://image.tmdb.org/t/p/w533_and_h300_bestv2${movie.backdrop_path}`,
+            overview: (movie.overview==='')? `Filme sem descrição`: movie.overview,
+			tituloOriginal:movie.original_title,
+			generos:movie.genres.map(key => key.name).join(', '),
+			produtoras:movie.production_companies.map(key => key.name).join(', '),
+	};
+
+	DOMcontrusct.setInfo(movieItems);
+});
+//
+const DOMcontrusct = {
+	loading(){
+		
+	},
+	setInfo(value){
+		document.title = value.title;
+		movieBackgrund.style.backgroundImage = 'url('+ value.back +')'
+		contentSubtitle.innerHTML = value.date;
+		contentTitle.innerHTML = value.title;
+		contentOverview.innerHTML = value.overview;
+		genero.innerHTML = value.generos;
+		titleoriginal.innerHTML = value.tituloOriginal;
+		produtor.innerHTML = value.produtoras;
+	},
+	showMore(){
+		const heightP = document.querySelector('.content__overview P').clientHeight;
+		const text = document.querySelector('.content__overview');
+		const showmore = document.querySelector('.movie__showmore p');
+		
+            if(text.clientHeight==100 && heightP>100 ){
+				text.style.height = `${heightP}px`;
+				showmore.innerHTML = 'Fechar'
+			}else{
+				text.style.height = `100px`;
+				showmore.innerHTML = 'Ler mais'
+			}
+	}
+}
+
+
+
+
+
+//
+let palavra = 'aeiou' 
+const letras = ['a','e','i','o','u',];
+const letrasComAcento = ['á','é','í','ó','ú',]
+
+for (let i = 0; i <letras.length; i++) {
+		palavra = palavra.replace(letras[i],letrasComAcento[i]);
+		console.log(palavra);
+};
+
+</script>
+	<!--	<script src="js/main.js"></script>-->
 </body>
 
 </html>

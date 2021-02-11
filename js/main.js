@@ -65,24 +65,32 @@ const modalCreate = {
     },
     modalinsertDate(movie) {
         // PEGANDO O HTML
-        const release = document.querySelector('.modal__movie__Subtitle h3').innerHTML = `Lançado em ${movie.date}`;
-        const title = document.querySelector('.modal__movie__title h2').innerHTML = movie.title;
-        const overview = document.querySelector('.modal__movie__overview p').innerHTML = movie.overview;
-        const background = document.querySelector('.modal__header').style.backgroundImage = 'url(' + movie.back + ')';
-		heightP = document.querySelector('.modal__movie__overview P').clientHeight;
+        document.querySelector('.modal__movie__Subtitle h3').innerHTML = `Lançado em ${movie.date}`;
+        document.querySelector('.modal__movie__title h2').innerHTML = movie.title;
+        document.querySelector('.modal__movie__overview p').innerHTML = movie.overview;
+        document.querySelector('.modal__header').style.backgroundImage = 'url(' + movie.back + ')';
+        document.querySelector('.modal__newpage a').setAttribute("href", `./pages/movie.html?=${movie.id}`);
         // ABRI MODAL
         modalCreate.modalOpen();
     },
     modalOpen() {
 		scrollpage = window.scrollY;
         //
-		const modalBackground = document.querySelector('.modal__background').classList.add('modal__bg--on');
+		document.querySelector('.modal__background').classList.add('modal__bg--on');
+        document.querySelector('.modal').classList.add('modal__active')
 		const main__container = document.querySelector('.main__container');
-        const modal = document.querySelector('.modal').classList.add('modal__active')
+        const heightP = document.querySelector('.modal__movie__overview P').clientHeight;
+		const text = document.querySelector('.modal__movie__overview');
+        const showmoreBtn = document.querySelector('.modal__showmore');
 		//
 		main__container.style.position = `fixed`;
         main__container.style.top = `-${scrollpage}px`;
        	//
+        if(text.clientHeight==100 && heightP>100 ){
+            showmoreBtn.style.display = 'flex';
+        }else{
+            showmoreBtn.style.display = 'none';
+        }
 		window.scrollTo(0,0)
     },
     closerModal() {
@@ -90,9 +98,8 @@ const modalCreate = {
 		//dom elementos
 		document.querySelector('.modal__showmore p').innerHTML = 'Ler mais'
 		document.querySelector('.modal__movie__overview').style.height = `100px`;
-		//
-		const modalBackground = document.querySelector('.modal__background').classList.remove('modal__bg--on');
-        const modal = document.querySelector('.modal').classList.remove('modal__active');
+		document.querySelector('.modal__background').classList.remove('modal__bg--on');
+        document.querySelector('.modal').classList.remove('modal__active');
 		const main__container = document.querySelector('.main__container');
         const closerBtn = document.querySelector('.modal__btn--closer');
 		//
@@ -105,6 +112,7 @@ const modalCreate = {
 		const heightP = document.querySelector('.modal__movie__overview P').clientHeight;
 		const text = document.querySelector('.modal__movie__overview');
 		const showmore = document.querySelector('.modal__showmore p');
+		
             if(text.clientHeight==100 && heightP>100 ){
 				text.style.height = `${heightP}px`;
 				showmore.innerHTML = 'Fechar'
@@ -163,11 +171,8 @@ formulario.addEventListener('submit', event => {
 async function searchMovie(value) {
     DOMfunctions.setSkeleton();
     //
-    const response1 = await fetch(`https://api.themoviedb.org/3/movie/284053?api_key=c8ef0b0b4be9eea2fd38600b56a29bb6&language=pt-BR`);
-    const dados1 = await response1.json()
-	const response = await fetch(`https://api.themoviedb.org/3/search/movie?${apikey}&language=pt-BR&query=${value}&page=1&include_adult=false`);
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?${apikey}&language=pt-BR&query=${value}&page=1&include_adult=false`);
     const dados = await response.json()
-    console.log(dados1)
     //
 	if (dados.total_results === 0) {
         output.innerHTML = htmlFromPage.returnInvalid(value)
@@ -175,6 +180,10 @@ async function searchMovie(value) {
         moviesTransform(dados.results);
     };
 };
+
+
+
+
 
 
 
